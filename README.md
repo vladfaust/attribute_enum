@@ -24,7 +24,7 @@ Class must have read'n'write attribute named `[what's being enumerated]`.
 
 ```ruby
 class Payment
-  include Enum
+  include AttributeEnum
   attr_accessor :status
 
   def initialize(status = 0)
