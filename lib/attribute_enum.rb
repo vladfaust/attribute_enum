@@ -43,12 +43,12 @@ module AttributeEnum
     #   Payment.get_statuses # => [:active, :inactive]
     #   Payment.get_status(1) # => :inactive
     #   Payment.get_status(:active) # => 0
-    #   Payment.get_status('invalid') # => ArgumentError('valid argument is either Fixnum or Symbol')
+    #   Payment.get_status('invalid') # => ArgumentError('valid argument is either Integer or Symbol')
     #
     def enum(enumerated, values)
       if values.is_a? Hash
         values.each do |key,val|
-          raise ArgumentError, "index should be numeric, #{key} provided wich it's a #{key.class}" unless key.is_a? Fixnum
+          raise ArgumentError, "index should be numeric, #{key} provided wich it's a #{key.class}" unless key.is_a? Integer
           raise ArgumentError "value should be a symbol, #{val} provided wich it's a #{val.class}" unless val.is_a? Symbol
         end
       elsif values.is_a? Array
@@ -130,13 +130,13 @@ module AttributeEnum
       # Obj.get_status(:active) # => 0
       #
       define_singleton_method "get_#{enumerated}" do |arg|
-        if arg.is_a? Fixnum
+        if arg.is_a? Integer
           self.enums[enumerated].fetch(arg, nil)
         elsif arg.is_a? Symbol
           key = self.enums[enumerated].rassoc(arg)
           key ? key[0] : nil
         else
-          raise ArgumentError.new('valid argument is either Fixnum or Symbol')
+          raise ArgumentError.new('valid argument is either Integer or Symbol')
         end
       end
 

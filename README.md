@@ -49,7 +49,7 @@ Payment.statuses # => [:active, :inactive]
 Payment.get_statuses # => [:active, :inactive]
 Payment.get_status(1) # => :inactive
 Payment.get_status(:active) # => 0
-Payment.get_status('invalid') # => ArgumentError('valid argument is either Fixnum or Symbol')
+Payment.get_status('invalid') # => ArgumentError('valid argument is either Integer or Symbol')
 
 ```
 
